@@ -1,159 +1,216 @@
-body{
-   cursor: url("../assets/cursor/yugicursor.png")
-   , default;
+/* src/styles/main.css */
+
+:root{
+  --bg-color: #08090b;
+  --card-border: #fff;
+  --accent: #ffd700;
 }
+
+* { box-sizing: border-box; }
+
+body{
+  margin: 0;
+  padding: 0;
+  background: var(--bg-color);
+  color: #fff;
+  cursor: url("../assets/cursor/yugicursor.png"), default;
+  overflow: hidden;
+}
+
 button,
 a,
 img:hover,
 button:hover,
 a:hover{
-   cursor: url("../assets/cursor/yamiyugicursorGLOW.png"), auto;
+  cursor: url("../assets/cursor/yamiyugicursorGLOW.png"), auto;
 }
 
+/* Background video container */
 .bg-video{
-    position: absolute;
-    z-index: -2;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
+  position: fixed;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bg-video .video{
-    height: 100vw;    
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
 }
 
-.bg-video::after  {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vw;
-    background:
+/* Gradient overlay */
+.bg-video::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background:
     linear-gradient(
-    90deg, 
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,0.8) 50%,
-    rgba(0,0,0,1) 100%)
-     ;
-
+      90deg,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,0.8) 50%,
+      rgba(0,0,0,1) 100%
+    );
+  pointer-events: none;
 }
 
 .container{
-    position: relative;
-    z-index: 3;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
+  position: relative;
+  z-index: 3;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;
+  padding: 0.7rem;
 }
 
+/* Left / right split */
 .container__left{
-    width: 35%;
-    min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center ;
-    justify-self: space-around;
+  width: 35%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
 }
 
 .container__right{
-    width: 65%;
-    
+  width: 65%;
 }
 
+/* Score box and frames */
 .score_box{
-    background-color: #fff;
-    padding: 30px;
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .frame{
-   border: 3px solid #000; 
-   border-radius: 5px;
-   }
+  border: 3px solid #000;
+  border-radius: 5px;
+}
 
+/* Card details */
 .card_details{
- background-color: #fff;
- padding: 1rem;
- display: flex;
- flex-direction: column;
- align-items: center;
- justify-content: space-between;
- height: 6rem;
- width: 100%;
+  background-color: #fff;
+  color: #000;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 6rem;
+  width: 100%;
+  border-radius: 6px;
+}
 
-   }
+#card-name{
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
 
- #card-name{
-font-size: 0.8rem;
+#card-type{
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
 
- }  
+/* Cards container */
+.card-box__container{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.1rem;
+}
 
- #card-type{
-font-size: 1rem;
+.card-versus__container{
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  padding-top: 1.4rem;
+  height: 300px;
+}
 
- }
+.versus-top,
+.versus-bottom{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
- .card-box__container{
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-self:space-between;
-    padding: 0.3rem;    
- }
+.versus-bottom{
+  margin-top: 1rem;
+}
 
- .card-versus__container{
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
-    align-items: center;
-    padding-top: 0.1rem;
-    height: 300px;
- }
- .versus-top,
- .versus-bottom{
-    display: flex;
-    align-items: center;
-    justify-content: center;
- }
+#next-duel{
+  display: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+}
 
- .versus-bottom{
-    margin-top: 1rem;
- }
+/* Hands and card layout */
+.card-box {
+  height: 9rem;
+  width: 100%;
+  display:flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+}
 
- #next-duel{
-    display: none;
- }
+.card-infield{
+  height: 11.2rem;
+  width: 8rem;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-infield > img{
+  border: none;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
 
- .card-box {
-    height: 9rem;
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
- }
+.card {
+  transition: transform 0.2s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+  will-change: transform;
+}
 
- .card-infield{
-    height: 11.2rem;
-    width: 8rem;
-    border: 1px solid #fff;
-    border-radius: 8px;
-    
- }
- .card-infield > img{
-    border: none;
-    height: 100%;
-    width: 100%;
-    border-radius: 8px;
- }
+.card:hover{
+  transform: scale(1.15);
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.45);
+}
 
- .card {
-    transition: transform 0.2s;
- }
+/* responsividade básica */
+@media (max-width: 800px) {
+  .container{ flex-direction: column; height: auto; }
+  .container__left, .container__right { width: 100%; }
+  .card-box { flex-wrap: wrap; gap: 6px; justify-content: center; }
+  .card { transform-origin: center; }
+}
 
- .card:hover{
-    transform: scale(1.2);
-    
- }
